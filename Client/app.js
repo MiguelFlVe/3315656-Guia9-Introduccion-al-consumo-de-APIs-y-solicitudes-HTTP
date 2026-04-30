@@ -2,9 +2,7 @@
 
 // Importar las funciones desde index.js
 import {
-     
-    // Importar las funciones desde Apropiación
-
+     // Importar las funciones desde Apropiación
     UsuariosDisponibles, //Solicitud 1
 
     postsDisponibles, // Solicitud 3
