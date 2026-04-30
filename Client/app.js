@@ -6,7 +6,8 @@ import {
     
     // Solicitud 1
     UsuariosDisponibles,
-
+    //Solicitud 2
+    UsuarioId,
     // Solicitud 3
     postsDisponibles,
 
@@ -22,6 +23,10 @@ const secciones = {
         Apr1 : {
             title: 'Solicitud 1',
             description: 'Realice una solicitud GET para obtener la lista completa de usuarios disponibles en el servicio.',
+        },
+        Apr2 : {
+            title: 'Solicitud 2',
+            description: 'Realice una solicitud GET para consultar la información de un usuario, por ID.',
         },
         Apr3 : {
             title: 'Solicitud 3',
@@ -67,7 +72,7 @@ const main = async () => {
 
     const { Apropiación, Transferencia } = secciones;
 
-    const { Apr1, Apr3, Apr5, Apr7, Apr10 } = Apropiación;
+    const { Apr1, Apr2, Apr3, Apr5, Apr7, Apr10 } = Apropiación;
 
     const { Tra4 } = Transferencia;
 
@@ -95,6 +100,16 @@ const main = async () => {
 
                     return;
 
+                case '2':
+                     console.log(`\n${Apr2.title} \n${Apr2.description} \n`);
+                 
+                     const id = prompt("Ingrese el ID del usuario: ")
+                     const usuario = await(UsuarioId(id))
+                
+                     console.log("Usuario Encontrado: ")
+                     console.log(usuario)
+
+                     return;
                 case '3':
                     console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
                     
