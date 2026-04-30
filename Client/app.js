@@ -88,7 +88,7 @@ const main = async () => {
                         console.log(`${usuario.id} - ${usuario.name}`);
                     });
 
-                    break;
+                    return;
 
                 case '3':
                     console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
