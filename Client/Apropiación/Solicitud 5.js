@@ -1,12 +1,11 @@
 // Realice una solicitud POST para registrar un nuevo comentario relacionado con una publicación.
 
-const newComment = async (i, t, b) => {
+const newComment = async (title, body) => {
     const postcomment = await fetch('http://localhost:3000/comments', {
         method: 'POST',
         body: JSON.stringify({
-            title: `${t}`,
-            body: `${b}`,
-            userId: Number(i),
+            title: `${title}`,
+            body: `${body}`,
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',

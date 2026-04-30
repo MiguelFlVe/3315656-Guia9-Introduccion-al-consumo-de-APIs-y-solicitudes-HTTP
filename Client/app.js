@@ -114,16 +114,14 @@ const main = async () => {
                 case '5':
                     console.log(`\n${Apr5.title} \n${Apr5.description} \n`);
                     
-                    const userId = prompt(`Ingrese el ID del usuario: `);
-
                     const title = prompt(`Ingrese el título del comentario: `);
 
                     const body = prompt(`Ingrese el cuerpo del comentario: `);
 
-                    if (userId.trim() === '' && title.trim() === '' && body.trim() === '') {
+                    if (title.trim() === '' && body.trim() === '') {
                         console.log(`Error: Todos los campos son obligatorios.`);
                     } else {
-                        const comentario = await newComment(userId, title, body);
+                        const comentario = await newComment(title, body);
                         console.log(`Comentario registrado: \n${JSON.stringify(comentario, null, 2)}`);
                     }
 
