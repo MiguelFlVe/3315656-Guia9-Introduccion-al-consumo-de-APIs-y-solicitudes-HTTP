@@ -10,6 +10,9 @@ import {
     // Solicitud 3
     postsDisponibles,
 
+    // Solicitud 5
+    newComment,
+
     // Importar las funciones desde Transferencia
 
     // Funciones globales
@@ -30,7 +33,7 @@ const secciones = {
         
         Apr5 : {
             title: 'Solicitud 5',
-            description: 'Descripción de la Solicitud 5',
+            description: 'Realice una solicitud POST para registrar un nuevo comentario relacionado con una publicación.',
         },
         
         Apr7 : {
@@ -93,7 +96,7 @@ const main = async () => {
                         console.log(`${usuario.id} - ${usuario.name}`);
                     });
 
-                    return;
+                    break;
 
                 case '3':
                     console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
@@ -106,11 +109,24 @@ const main = async () => {
                         console.log(`    id: ${post.id} \nuserId: ${post.userId} \n title: ${post.title} \n  body: ${post.body} \n`);
                     });
                     
-                    return;
+                    break;
 
                 case '5':
                     console.log(`\n${Apr5.title} \n${Apr5.description} \n`);
                     
+                    const userId = prompt(`Ingrese el ID del usuario: `);
+
+                    const title = prompt(`Ingrese el título del comentario: `);
+
+                    const body = prompt(`Ingrese el cuerpo del comentario: `);
+
+                    if (userId.trim() === '' && title.trim() === '' && body.trim() === '') {
+                        console.log(`Error: Todos los campos son obligatorios.`);
+                    } else {
+                        const comentario = await newComment(userId, title, body);
+                        console.log(`Comentario registrado: \n${JSON.stringify(comentario, null, 2)}`);
+                    }
+
                     break;
 
                 case '7':
