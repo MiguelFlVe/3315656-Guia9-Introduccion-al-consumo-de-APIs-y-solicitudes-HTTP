@@ -164,4 +164,3 @@ const main = async () => {
 
 main();
 
-//Para ejecutar el programa es con node Client/app.js
