@@ -1,4 +1,6 @@
 // Exportar las funciones desde Apropiación
+
+export { crearPost } from './Apropiación/Solicitud 4.js';
 export { } from './Apropiación/Solicitud 3.js';
 export { } from './Apropiación/Solicitud 5.js';
 export { } from './Apropiación/Solicitud 7.js';

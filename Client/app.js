@@ -1,6 +1,8 @@
 // Importar las funciones desde index.js
 import {
+     
     // Importar las funciones desde Apropiación
+    crearPost,
 
     // Importar las funciones desde Transferencia
 
@@ -14,6 +16,11 @@ const secciones = {
         Apr3 : {
             title: 'Solicitud 3',
             description: 'Descripción de la Solicitud 3',
+        },
+
+        Apr4 : {
+            title: 'Solicitud 4',
+            description: 'Realice una solicitud POST para crear una nueva publicación asociada a un usuario existente.',
         },
         
         Apr5 : {
@@ -51,7 +58,7 @@ const sect = prompt(`Ingrese el número de la sección: `);
 
 const { Apropiación, Transferencia } = secciones;
 
-const { Apr3, Apr5, Apr7, Apr10 } = Apropiación;
+const { Apr3, Apr4, Apr5, Apr7, Apr10 } = Apropiación;
 
 const { Tra4 } = Transferencia;
 
@@ -60,7 +67,7 @@ switch (sect) {
     case '1':
         console.log(`Sección: Apropiación \n`);
         
-        console.log(`Seleccione la solicitud a revisar: \n3. Solicitud 3 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
+        console.log(`Seleccione la solicitud a revisar: \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
         
         const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -69,6 +76,22 @@ switch (sect) {
                 console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
 
                 break;
+
+            case '4':
+                console.log(`\n${Apr4.title} \n${Apr4.description} \n`);
+                
+                console.log(`\nCrear nueva publicación\n`);
+
+                const userId = prompt("Ingresa el ID del usuario: ");
+                const title = prompt("Título del post: ");
+                const body = prompt("Contenido del post: ");
+
+                const nuevoPost = await crearPost(userId, title, body);
+
+                console.log("Post creado:");
+                console.log(nuevoPost);
+
+                return;
 
             case '5':
                 console.log(`\n${Apr5.title} \n${Apr5.description} \n`);
