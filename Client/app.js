@@ -1,6 +1,9 @@
+//Para ejecutar el programa es con "node Client/app.js"
+
 // Importar las funciones desde index.js
 import {
     // Importar las funciones desde Apropiación
+    UsuariosDisponibles,
 
     // Importar las funciones desde Transferencia
 
@@ -11,6 +14,10 @@ import {
 // Objeto de sección
 const secciones = {
     Apropiación: {
+        Apr1 : {
+            title: 'Solicitud 1',
+            description: 'Realice una solicitud GET para obtener la lista completa de usuarios disponibles en el servicio.',
+        },
         Apr3 : {
             title: 'Solicitud 3',
             description: 'Descripción de la Solicitud 3',
@@ -41,81 +48,97 @@ const secciones = {
 };
 
 // Menú principal
-console.log(`Guía 9 - Introducción al consumo de APIs y solicitudes HTTP \n`);
 
-console.log(`Integrantes: \nMiguel Flórez - Líder \nOscar Solano \n`);
+//Se agrega el async para que funcione el codigo porque estamos manejando await
+const main = async () => {
 
-console.log(`Seleccione la sección a revisar: \n1. Apropiación \n2. Transferencia \n`);
+    console.log(`Guía 9 - Introducción al consumo de APIs y solicitudes HTTP \n`);
 
-const sect = prompt(`Ingrese el número de la sección: `);
+    console.log(`Integrantes: \nMiguel Flórez - Líder \nOscar Solano \n`);
 
-const { Apropiación, Transferencia } = secciones;
+    console.log(`Seleccione la sección a revisar: \n1. Apropiación \n2. Transferencia \n`);
 
-const { Apr3, Apr5, Apr7, Apr10 } = Apropiación;
+    const sect = prompt(`Ingrese el número de la sección: `);
 
-const { Tra4 } = Transferencia;
+    const { Apropiación, Transferencia } = secciones;
 
-switch (sect) {
+    const { Apr1, Apr3, Apr5, Apr7, Apr10 } = Apropiación;
 
-    case '1':
-        console.log(`Sección: Apropiación \n`);
-        
-        console.log(`Seleccione la solicitud a revisar: \n3. Solicitud 3 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
-        
-        const apr = prompt(`Ingrese el número de la solicitud: `);
+    const { Tra4 } = Transferencia;
 
-        switch(apr) {
-            case '3':
-                console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
+    switch (sect) {
 
-                break;
+        case '1':
+            console.log(`Sección: Apropiación \n`);
+            
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n3. Solicitud 3 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
+            
+            const apr = prompt(`Ingrese el número de la solicitud: `);
 
-            case '5':
-                console.log(`\n${Apr5.title} \n${Apr5.description} \n`);
+            switch(apr) {
 
-                break;
+                case '1':
+                    console.log(`\n${Apr1.title} \n${Apr1.description} \n`);
 
-            case '7':
-                console.log(`\n${Apr7.title} \n${Apr7.description} \n`);
+                    const usuarios = await UsuariosDisponibles();
 
-                break;
+                    console.log("Usuarios disponibles:\n");
 
-            case '10':
-                console.log(`\n${Apr10.title} \n${Apr10.description} \n`);
+                    usuarios.forEach(usuario => {
+                        console.log(`${usuario.id} - ${usuario.name}`);
+                    });
 
-                break;
+                    return;
 
-            default:
-                console.log(`Opción no válida`);
-                
-                break;
-        }
+                case '3':
+                    console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
+                    break;
 
-        break
+                case '5':
+                    console.log(`\n${Apr5.title} \n${Apr5.description} \n`);
+                    break;
 
-    case '2':
-        console.log(`Sección Transferencia \n`);
+                case '7':
+                    console.log(`\n${Apr7.title} \n${Apr7.description} \n`);
+                    break;
 
-        console.log(`Seleccione el enunciado a revisar: \n4. Enunciado 4 \n`);
+                case '10':
+                    console.log(`\n${Apr10.title} \n${Apr10.description} \n`);
+                    break;
 
-        const tra = prompt(`Ingrese el número del enunciado: `);
+                default:
+                    console.log(`Opción no válida`);
+                    break;
+            }
 
-        switch(tra) {
-            case '4':
-                console.log(`\n${Tra4.title} \n${Tra4.description} \n`);
+            break;
 
-                break;
+        case '2':
+            console.log(`Sección Transferencia \n`);
 
-            default:
-                console.log(`Opción no válida`);
-                
-                break;
-        }
+            console.log(`Seleccione el enunciado a revisar: \n4. Enunciado 4 \n`);
 
-        break
+            const tra = prompt(`Ingrese el número del enunciado: `);
 
-    default:
-        console.log(`Opción no válida`);
+            switch(tra) {
+                case '4':
+                    console.log(`\n${Tra4.title} \n${Tra4.description} \n`);
+                    break;
 
-        break;
-}
+                default:
+                    console.log(`Opción no válida`);
+                    break;
+            }
+
+            break;
+
+        default:
+            console.log(`Opción no válida`);
+            break;
+    }
+};
+
+
+main();
+
+//Para ejecutar el programa es con node Client/app.js
