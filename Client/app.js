@@ -3,7 +3,12 @@
 // Importar las funciones desde index.js
 import {
     // Importar las funciones desde Apropiación
+    
+    // Solicitud 1
     UsuariosDisponibles,
+
+    // Solicitud 3
+    postsDisponibles,
 
     // Importar las funciones desde Transferencia
 
@@ -20,7 +25,7 @@ const secciones = {
         },
         Apr3 : {
             title: 'Solicitud 3',
-            description: 'Descripción de la Solicitud 3',
+            description: 'Realice una solicitud GET para obtener todas las publicaciones (posts) asociadas a un usuario determinado.',
         },
         
         Apr5 : {
@@ -92,22 +97,35 @@ const main = async () => {
 
                 case '3':
                     console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
-                    break;
+                    
+                    const posts = await postsDisponibles();
+
+                    console.log("Publicaciones disponibles:\n");
+
+                    posts.forEach(post => {
+                        console.log(`    id: ${post.id} \nuserId: ${post.userId} \n title: ${post.title} \n  body: ${post.body} \n`);
+                    });
+                    
+                    return;
 
                 case '5':
                     console.log(`\n${Apr5.title} \n${Apr5.description} \n`);
+                    
                     break;
 
                 case '7':
                     console.log(`\n${Apr7.title} \n${Apr7.description} \n`);
+                    
                     break;
 
                 case '10':
                     console.log(`\n${Apr10.title} \n${Apr10.description} \n`);
+                    
                     break;
 
                 default:
                     console.log(`Opción no válida`);
+                    
                     break;
             }
 
@@ -123,10 +141,12 @@ const main = async () => {
             switch(tra) {
                 case '4':
                     console.log(`\n${Tra4.title} \n${Tra4.description} \n`);
+                    
                     break;
 
                 default:
                     console.log(`Opción no válida`);
+                    
                     break;
             }
 
@@ -134,11 +154,10 @@ const main = async () => {
 
         default:
             console.log(`Opción no válida`);
+            
             break;
     }
 };
 
 
 main();
-
-//Para ejecutar el programa es con node Client/app.js
