@@ -1,4 +1,5 @@
 // Exportar las funciones desde Apropiación
+export { UsuarioId } from './Apropiación/Solicitud 2.js';
 export { } from './Apropiación/Solicitud 3.js';
 export { } from './Apropiación/Solicitud 5.js';
 export { } from './Apropiación/Solicitud 7.js';

@@ -1,6 +1,7 @@
 // Importar las funciones desde index.js
 import {
     // Importar las funciones desde Apropiación
+    UsuarioId,
 
     // Importar las funciones desde Transferencia
 
@@ -11,6 +12,10 @@ import {
 // Objeto de sección
 const secciones = {
     Apropiación: {
+        Apr2 : {
+            title: 'Solicitud 2',
+            description: 'Realice una solicitud GET para consultar la información de un usuario, por ID.',
+        },
         Apr3 : {
             title: 'Solicitud 3',
             description: 'Descripción de la Solicitud 3',
@@ -51,7 +56,7 @@ const sect = prompt(`Ingrese el número de la sección: `);
 
 const { Apropiación, Transferencia } = secciones;
 
-const { Apr3, Apr5, Apr7, Apr10 } = Apropiación;
+const { Apr2, Apr3, Apr5, Apr7, Apr10 } = Apropiación;
 
 const { Tra4 } = Transferencia;
 
@@ -65,6 +70,16 @@ switch (sect) {
         const apr = prompt(`Ingrese el número de la solicitud: `);
 
         switch(apr) {
+            case '2':
+                console.log(`\n${Apr2.title} \n${Apr2.description} \n`);
+                 
+                const id = prompt("Ingrese el ID del usuario: ")
+                const usuario = await(UsuarioId(id))
+                
+                console.log("Usuario Encontrado: ")
+                console.log(usuario)
+
+                return;
             case '3':
                 console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
 
