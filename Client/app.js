@@ -3,13 +3,10 @@
 // Importar las funciones desde index.js
 import {
     // Importar las funciones desde Apropiación
-    
-    // Solicitud 1
-    UsuariosDisponibles,
-    //Solicitud 2
-    UsuarioId,
-    // Solicitud 3
-    postsDisponibles,
+
+    UsuariosDisponibles, // Solicitud 1
+    UsuarioId, //Solicitud 2
+    postsDisponibles, // Solicitud 3
 
     // Importar las funciones desde Transferencia
 
@@ -81,7 +78,7 @@ const main = async () => {
         case '1':
             console.log(`Sección: Apropiación \n`);
             
-            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n3. Solicitud 3 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2. Solicitud 2 \n3. Solicitud 3 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
             
             const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -110,6 +107,7 @@ const main = async () => {
                      console.log(usuario)
 
                      return;
+
                 case '3':
                     console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
                     
