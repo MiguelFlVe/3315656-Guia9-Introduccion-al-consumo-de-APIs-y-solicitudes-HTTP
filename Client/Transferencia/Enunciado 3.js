@@ -31,11 +31,14 @@ export const getComenta = async () => {
 
 export const buscarPublicacion = async (idPost) => {
     try {
+        
+        const idPost = prompt("Ingrese el Id de la publicacion: ");
+
         const posts = await getPublica();
         const comments = await getComenta();
 
         // Buscar el post específico
-        const post = posts.find(p => p.id === parseInt(idPost));
+        const post = posts.find(p => p.id === idPost);
 
         if (!post) {
             console.log("Publicación no encontrada");

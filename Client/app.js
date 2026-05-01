@@ -1,6 +1,7 @@
 //Para ejecutar el programa es con "node Client/app.js"
 
 // Importar las funciones desde index.js
+import e from 'express';
 import {
     // Importar las funciones desde Apropiación
     
@@ -190,7 +191,7 @@ const main = async () => {
                     console.log("Publicaciones disponibles:\n");
 
                     posts.forEach(post => {
-                        console.log(`    id: ${post.id} \nuserId: ${post.userId} \n title: ${post.title} \n  body: ${post.body} \n`);
+                        console.log(`id: ${post.id} \nuserId: ${post.userId} \n title: ${post.title} \n  body: ${post.body} \n`);
                     });
                     
                     break;
@@ -234,7 +235,7 @@ const main = async () => {
                case '6': { 
                    console.log(`\n${Apr6.title} \n${Apr6.description} \n`);
     
-                   const id = parseInt(prompt("Ingrese el ID del usuario: "));
+                   const id = prompt("Ingrese el ID del usuario: ");
                    const titulo = prompt("Ingrese el nuevo titulo: ");
                    const cuerpo = prompt("Ingrese el nuevo contenido: ");
     
@@ -276,15 +277,9 @@ const main = async () => {
                     console.log(`\n${Apr8.title} \n${Apr8.description} \n`);
 
                     const eliminar = prompt("ID del post a eliminar")
-                    const ID = parseInt(eliminar)
+                    
 
-                    if(!ID || ID <= 0){
-                        console.log("Id invalido")
-
-                        break
-                    }
-
-                    const eliminado = await borrarPost(ID)
+                   const eliminado = await borrarPost(eliminar)
 
                     if (eliminado){
                         console.log("Eliminado correctamente")
@@ -300,15 +295,10 @@ const main = async () => {
                     console.log(`\n${Apr9.title} \n${Apr9.description} \n`);
 
                     const verificar = prompt("Ingrese el ID del post: ")
-                    const ide = parseInt(verificar)
-
-                    if(!ide || ide <= 0){
-                        console.log("Id invalido")
-                        return;
-                    }
+                    
                     
                     //Eliminamos o modificamos
-                    const eliminado = await borrarPost(ide);
+                    const eliminado = await borrarPost(verificar);
 
                     if(eliminado) {
                         console.log("Eliminado correctamente")
@@ -360,20 +350,22 @@ const main = async () => {
                     
                     await usuariosConPosts()
                     
-                    break
+                    break;
 
                 case '2':
                     console.log(`\n${Tra2.title} \n${Tra2.description} \n`);
                     
                     await postsConComentarios()
                     
-                    break
+                    break;
+
                 case '3':
                     console.log(`\n${Tra3.title} \n${Tra3.description} \n`);
                     
                     await buscarPublicacion()
                     
-                    break
+                    break;
+                    
                 case '4':
                     console.log(`\n${Tra4.title} \n${Tra4.description} \n`);
 
