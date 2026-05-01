@@ -24,6 +24,7 @@ import {
     
     // Solicitud 7
     updatePost,
+    
     //Solicitud 8
     borrarPost,
     
@@ -38,7 +39,9 @@ import {
 
     //Enunciado 1
     usuariosConPosts,
-
+    
+    // Enunciado 4
+    deletePostVerifyComments,
 
     // Funciones globales
     prompt
@@ -104,7 +107,7 @@ const secciones = {
 
         Tra4 : {
             title: 'Enunciado 4',
-            description: 'Descripción del Enunciado 4',
+            description: 'Antes de eliminar una publicación, el sistema debe validar si dicha publicación tiene comentarios asociados. Si tiene comentarios, no debe eliminarse; de lo contrario, puede proceder.',
         }
     }
 };
@@ -195,15 +198,17 @@ const main = async () => {
 
                 case '5':
                     console.log(`\n${Apr5.title} \n${Apr5.description} \n`);
+
+                    const idPost = prompt(`Ingrese el ID de la publicación a la que desea agregar un comentario: `);
                     
                     const titulo = prompt(`Ingrese el título del comentario: `);
 
                     const cuerpo = prompt(`Ingrese el cuerpo del comentario: `);
 
-                    if (titulo.trim() === '' || cuerpo.trim() === '') {
+                    if (idPost.trim() === '' || titulo.trim() === '' || cuerpo.trim() === '') {
                         console.log(`Error: Todos los campos son obligatorios.`);
                     } else {
-                        const comentario = await newComment(titulo, cuerpo);
+                        const comentario = await newComment(idPost, titulo, cuerpo);
                         console.log(`Comentario registrado: \n${JSON.stringify(comentario, null, 2)}`);
                     }
 
@@ -224,7 +229,7 @@ const main = async () => {
                          id,       
                          title,
                          body
-                    };
+                    }};
 
                     const actualizacion = await actualizarPublicacion(id, nuevaData);
                     console.log(`Publicacion actualizada ${actualizacion}`);
@@ -335,6 +340,14 @@ const main = async () => {
                     return
                 case '4':
                     console.log(`\n${Tra4.title} \n${Tra4.description} \n`);
+
+                    const postIdToDelete = prompt(`Ingrese el ID de la publicación que desea eliminar: `);
+
+                    if (postIdToDelete.trim() === '') {
+                        console.log(`Error: El ID de la publicación es obligatorio.`);
+                    } else {
+                        await deletePostVerifyComments(postIdToDelete);
+                    }
                     
                     break;
 

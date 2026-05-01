@@ -16,4 +16,6 @@ const borrarPost = async (id) => {
         console.error(error.message)
 
    }
-}
+};
+
+export { borrarPost };
