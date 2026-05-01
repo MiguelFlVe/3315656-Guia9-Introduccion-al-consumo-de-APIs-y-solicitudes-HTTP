@@ -18,6 +18,7 @@ import {
 
     // Solicitud 5
     newComment,
+
     //Solicitud 6
     actualizarPublicacion,
     
@@ -29,7 +30,6 @@ import {
     //Solicitud 9
     verificarPost,
     
-
     // Solicitud 10
     generalGet,
 
@@ -269,7 +269,7 @@ const main = async () => {
                         console.error("No fue posible eliminar")
                     }
                     
-                    break;
+                    return;
                 case '9':
                     console.log(`\n${Apr9.title} \n${Apr9.description} \n`);
 
