@@ -8,7 +8,7 @@ export { updatePost } from './Apropiación/Solicitud 7.js';
 export { generalGet } from './Apropiación/Solicitud 10.js';
 
 // Exportar las funciones desde Transferencia
-export { } from './Transferencia/Enunciado 4.js';
+export { deletePostVerifyComments } from './Transferencia/Enunciado 4.js';
 
 // Funciones globales
 import PromptSync from 'prompt-sync';

@@ -173,30 +173,6 @@
       "postId": 9,
       "name": "Comentario 10",
       "body": "Los códigos HTTP son importantes."
-    },
-    {
-      "title": "${t}",
-      "body": "${b}",
-      "userId": 7,
-      "id": "7IW4KH8AkTQ"
-    },
-    {
-      "title": "${t}",
-      "body": "${b}",
-      "userId": 7,
-      "id": "a0z5PPlxUGI"
-    },
-    {
-      "title": "${t}",
-      "body": "${b}",
-      "userId": 7,
-      "id": "gZmC86h22Ac"
-    },
-    {
-      "title": "Comentario de prueba",
-      "body": "Comentario de prueba",
-      "userId": 7,
-      "id": "ZXoafS3FL5Q"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
