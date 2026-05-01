@@ -19,18 +19,11 @@ import {
     // Solicitud 5
     newComment,
 
-
     //Solicitud 6
     actualizarPublicacion,
         
     // Solicitud 7
     updatePost,
-    
-    //Solicitud 8
-    borrarPost,
-    
-    //Solicitud 9
-    verificarPost,
     
     //Solicitud 8
     borrarPost,
@@ -245,7 +238,7 @@ const main = async () => {
                          id,       
                          title: titulo,
                          body: cuerpo
-                    }};
+                    };
 
                     const actualizacion = await actualizarPublicacion(id, nuevaData);
                     console.log(`Publicacion actualizada ${actualizacion}`);
@@ -327,7 +320,7 @@ const main = async () => {
                     break; 
                     }
 
-                case '10':
+                case '10': { 
                     console.log(`\n${Apr10.title} \n${Apr10.description} \n`);
 
                     const datosGenerales = await generalGet();
@@ -347,7 +340,7 @@ const main = async () => {
 
             break;
 
-        case '2':
+        case '2': 
             console.log(`Sección Transferencia \n`);
 
             console.log(`Seleccione el enunciado a revisar: \n1. Enunciado 1 \n2. Enunciado 2 \n4. Enunciado 4 \n`);
