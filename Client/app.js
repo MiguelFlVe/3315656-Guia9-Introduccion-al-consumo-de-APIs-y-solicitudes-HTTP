@@ -30,6 +30,10 @@ import {
 
     // Importar las funciones desde Transferencia
 
+    //Enunciado 1
+    usuariosConPosts,
+
+
     // Funciones globales
     prompt
 } from './index.js';
@@ -77,6 +81,11 @@ const secciones = {
     },
 
     Transferencia: {
+        Tra1 : {
+            title: 'Enunciado 1',
+            description: 'Usuarios activos y sus publicaciones',
+        },
+
         Tra4 : {
             title: 'Enunciado 4',
             description: 'Descripción del Enunciado 4',
@@ -101,7 +110,7 @@ const main = async () => {
 
     const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr6, Apr7, Apr10 } = Apropiación;
 
-    const { Tra4 } = Transferencia;
+    const { Tra1, Tra4 } = Transferencia;
 
     switch (sect) {
 
@@ -245,11 +254,17 @@ const main = async () => {
         case '2':
             console.log(`Sección Transferencia \n`);
 
-            console.log(`Seleccione el enunciado a revisar: \n4. Enunciado 4 \n`);
+            console.log(`Seleccione el enunciado a revisar: \n1. Enunciado 1 \n4. Enunciado 4 \n`);
 
             const tra = prompt(`Ingrese el número del enunciado: `);
 
             switch(tra) {
+                case '1':
+                    console.log(`\n${Tra1.title} \n${Tra1.description} \n`);
+                    
+                    await usuariosConPosts()
+                    
+                    return
                 case '4':
                     console.log(`\n${Tra4.title} \n${Tra4.description} \n`);
                     
