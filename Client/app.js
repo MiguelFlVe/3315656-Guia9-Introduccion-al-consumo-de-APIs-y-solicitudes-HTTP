@@ -20,9 +20,12 @@ import {
     newComment,
     //Solicitud 6
     actualizarPublicacion,
-
+    
     // Solicitud 7
     updatePost,
+    
+    //Solicitud 8
+    borrarPost,
 
     // Solicitud 10
     generalGet,
@@ -73,7 +76,12 @@ const secciones = {
             title: 'Solicitud 7',
             description: 'Realice una solicitud PATCH para modificar únicamente un campo específico de esa publicación.',
         },
-        
+
+        Apr8 : {
+            title: 'Solicitud 8',
+            description: 'Realice una solicitud DELETE para eliminar una publicación existente',
+        },
+
         Apr10: {
             title: 'Solicitud 10',
             description: 'Realice una solicitud GET general y compare la estructura de la respuesta con las solicitudes anteriores, identificando cambios y comportamientos del servicio.',
@@ -108,7 +116,7 @@ const main = async () => {
 
     const { Apropiación, Transferencia } = secciones;
 
-    const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr6, Apr7, Apr10 } = Apropiación;
+    const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr6, Apr7, Apr8, Apr10 } = Apropiación;
 
     const { Tra1, Tra4 } = Transferencia;
 
@@ -117,7 +125,7 @@ const main = async () => {
         case '1':
             console.log(`Sección: Apropiación \n`);
             
-            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n6. Solicitud 6 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n6. Solicitud 6 \n7. Solicitud 7 \n.8 Solicitud 8 \n10. Solicitud 10 \n`);
             
             const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -230,6 +238,29 @@ const main = async () => {
                         console.log(`Publicación actualizada.`);
                     }
 
+                    break;
+
+                case '8':
+                    console.log(`\n${Apr8.title} \n${Apr8.description} \n`);
+
+                    const eliminar = prompt("ID del post a eliminar")
+                    const ID = parseInt(eliminar)
+
+                    if(!ID || ID <= 0){
+                        console.log("Id invalido")
+
+                        break
+                    }
+
+                    const eliminado = await borrarPost(ID)
+
+                    if (eliminado){
+                        console.log("Eliminado correctamente")
+                    }
+                    else {
+                        console.error("No fue posible eliminar")
+                    }
+                    
                     break;
 
                 case '10':

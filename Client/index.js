@@ -6,6 +6,7 @@ export { crearPost } from './Apropiación/Solicitud 4.js';
 export { newComment } from './Apropiación/Solicitud 5.js';
 export { actualizarPublicacion } from './Apropiación/Solicitud 6.js';
 export { updatePost } from './Apropiación/Solicitud 7.js';
+export { borrarPost } from './Apropiación/Solicitud 8.js';
 export { generalGet } from './Apropiación/Solicitud 10.js';
 
 // Exportar las funciones desde Transferencia
