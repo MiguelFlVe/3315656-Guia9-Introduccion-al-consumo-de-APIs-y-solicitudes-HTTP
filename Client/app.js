@@ -19,6 +19,9 @@ import {
     // Solicitud 7
     updatePost,
 
+    //Solicitud 9
+    verificarPost,
+
     // Importar las funciones desde Transferencia
 
     // Funciones globales
@@ -50,6 +53,11 @@ const secciones = {
             title: 'Solicitud 7',
             description: 'Realice una solicitud PATCH para modificar únicamente un campo específico de esa publicación.',
         },
+
+        Apr9 : {
+            title: 'Solicitud 9',
+            description: 'Repita una solicitud GET sobre el recurso eliminado o modificado y analice la respuesta obtenida.',
+        },
         
         Apr10: {
             title: 'Solicitud 10',
@@ -80,7 +88,7 @@ const main = async () => {
 
     const { Apropiación, Transferencia } = secciones;
 
-    const { Apr1, Apr2, Apr3, Apr5, Apr7, Apr10 } = Apropiación;
+    const { Apr1, Apr2, Apr3, Apr5, Apr7, Apr9, Apr10 } = Apropiación;
 
     const { Tra4 } = Transferencia;
 
@@ -89,7 +97,7 @@ const main = async () => {
         case '1':
             console.log(`Sección: Apropiación \n`);
             
-            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n5. Solicitud 5 \n7. Solicitud 7 \n9. Solicitud 9 \n10. Solicitud 10 \n`);
             
             const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -163,6 +171,35 @@ const main = async () => {
                     }
 
                     break;
+                case '9':
+                    console.log(`\n${Apr9.title} \n${Apr9.description} \n`);
+
+                    const verificar = prompt("Ingrese el ID del post: ")
+                    const ide = parseInt(verificar)
+
+                    if(!ide || ide <= 0){
+                        console.log("Id invalido")
+                        return;
+                    }
+                    
+                    //Eliminamos o modificamos
+                    const eliminado = await borrarPost(ide);
+
+                    if(eliminado) {
+                        console.log("Eliminado correctamente")
+                    }
+                    
+                    //Verificamos la respuesta con GET
+                    const verificacion = await verificarPost(ide)
+
+                    if(!verificacion){
+                        console.error("El recurso no existe en el servidor")
+                    }
+                    else {
+                        console.log(`Recurso disponible ${verificacion}`)
+
+                    }
+                    return
 
                 case '10':
                     console.log(`\n${Apr10.title} \n${Apr10.description} \n`);
