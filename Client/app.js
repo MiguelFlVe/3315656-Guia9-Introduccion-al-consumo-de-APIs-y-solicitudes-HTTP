@@ -155,7 +155,7 @@ const main = async () => {
                     const actualizacion = await actualizarPublicacion(id, nuevaData);
                     console.log(`Publicacion actualizada ${actualizacion}`);
 
-                    return;
+                    break;
                     
 
                 case '7':
