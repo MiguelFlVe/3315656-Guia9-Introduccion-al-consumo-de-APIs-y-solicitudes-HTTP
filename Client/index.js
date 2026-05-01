@@ -4,6 +4,7 @@ export { UsuarioId } from './Apropiación/Solicitud 2.js';
 export { postsDisponibles } from './Apropiación/Solicitud 3.js';
 export { newComment } from './Apropiación/Solicitud 5.js';
 export { updatePost } from './Apropiación/Solicitud 7.js';
+export { verificarPost } from './Apropiación/Solicitud 9.js';
 export { } from './Apropiación/Solicitud 10.js';
 
 // Exportar las funciones desde Transferencia
