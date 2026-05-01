@@ -6,6 +6,9 @@ import {
     
     // Solicitud 1
     UsuariosDisponibles,
+    
+    //Solicitud 2
+    UsuarioId, 
 
     // Solicitud 3
     postsDisponibles,
@@ -15,6 +18,9 @@ import {
 
     // Solicitud 5
     newComment,
+
+    // Solicitud 7
+    updatePost,
 
     // Importar las funciones desde Transferencia
 
@@ -28,6 +34,10 @@ const secciones = {
         Apr1 : {
             title: 'Solicitud 1',
             description: 'Realice una solicitud GET para obtener la lista completa de usuarios disponibles en el servicio.',
+        },
+        Apr2 : {
+            title: 'Solicitud 2',
+            description: 'Realice una solicitud GET para consultar la información de un usuario, utilizando su ID.',
         },
         Apr3 : {
             title: 'Solicitud 3',
@@ -46,7 +56,7 @@ const secciones = {
         
         Apr7 : {
             title: 'Solicitud 7',
-            description: 'Descripción de la Solicitud 7',
+            description: 'Realice una solicitud PATCH para modificar únicamente un campo específico de esa publicación.',
         },
         
         Apr10: {
@@ -78,7 +88,7 @@ const main = async () => {
 
     const { Apropiación, Transferencia } = secciones;
 
-    const { Apr1, Apr3, Apr4, Apr5, Apr7, Apr10 } = Apropiación;
+    const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr7, Apr10 } = Apropiación;
 
     const { Tra4 } = Transferencia;
 
@@ -87,7 +97,7 @@ const main = async () => {
         case '1':
             console.log(`Sección: Apropiación \n`);
             
-            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
             
             const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -105,6 +115,17 @@ const main = async () => {
                     });
 
                     return;
+
+                case '2':
+                     console.log(`\n${Apr2.title} \n${Apr2.description} \n`);
+                 
+                     const id = prompt("Ingrese el ID del usuario: ")
+                     const usuario = await(UsuarioId(id))
+                
+                     console.log("Usuario Encontrado: ")
+                     console.log(usuario)
+
+                     return;    
 
                 case '3':
                     console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
@@ -143,7 +164,7 @@ const main = async () => {
 
                     const body = prompt(`Ingrese el cuerpo del comentario: `);
 
-                    if (title.trim() === '' && body.trim() === '') {
+                    if (title.trim() === '' || body.trim() === '') {
                         console.log(`Error: Todos los campos son obligatorios.`);
                     } else {
                         const comentario = await newComment(title, body);
@@ -154,7 +175,18 @@ const main = async () => {
 
                 case '7':
                     console.log(`\n${Apr7.title} \n${Apr7.description} \n`);
+
+                    const postId = prompt(`Ingrese el ID de la publicación a modificar: `);
                     
+                    const newBody = prompt(`Ingrese el nuevo cuerpo de la publicación: `);
+
+                    if (postId.trim() === '' || newBody.trim() === '') {
+                        console.log(`Error: Todos los campos son obligatorios.`);
+                    } else {
+                        const postActualizado = await updatePost(postId, newBody);
+                        console.log(`Publicación actualizada.`);
+                    }
+
                     break;
 
                 case '10':
