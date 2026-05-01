@@ -48,7 +48,7 @@ const secciones = {
         
         Apr7 : {
             title: 'Solicitud 7',
-            description: 'Descripción de la Solicitud 7',
+            description: 'Realice una solicitud PATCH para modificar únicamente un campo específico de esa publicación.',
         },
         
         Apr10: {
@@ -139,7 +139,7 @@ const main = async () => {
 
                     const body = prompt(`Ingrese el cuerpo del comentario: `);
 
-                    if (title.trim() === '' && body.trim() === '') {
+                    if (title.trim() === '' || body.trim() === '') {
                         console.log(`Error: Todos los campos son obligatorios.`);
                     } else {
                         const comentario = await newComment(title, body);
@@ -150,7 +150,18 @@ const main = async () => {
 
                 case '7':
                     console.log(`\n${Apr7.title} \n${Apr7.description} \n`);
+
+                    const postId = prompt(`Ingrese el ID de la publicación a modificar: `);
                     
+                    const newBody = prompt(`Ingrese el nuevo cuerpo de la publicación: `);
+
+                    if (postId.trim() === '' || newBody.trim() === '') {
+                        console.log(`Error: Todos los campos son obligatorios.`);
+                    } else {
+                        const postActualizado = await updatePost(postId, newBody);
+                        console.log(`Publicación actualizada.`);
+                    }
+
                     break;
 
                 case '10':
