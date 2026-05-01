@@ -43,6 +43,9 @@ import {
     //Enunciado 2
     postsConComentarios,
 
+    //Enunciado 3
+    buscarPublicacion,
+
     // Enunciado 4
     deletePostVerifyComments,
 
@@ -113,6 +116,11 @@ const secciones = {
             description: 'Publicaciones con y sin comentarios',
         },
 
+        Tra3 : {
+            title: 'Enunciado 3',
+            description: 'Búsqueda específica de información',
+        },
+
         Tra4 : {
             title: 'Enunciado 4',
             description: 'Antes de eliminar una publicación, el sistema debe validar si dicha publicación tiene comentarios asociados. Si tiene comentarios, no debe eliminarse; de lo contrario, puede proceder.',
@@ -137,7 +145,7 @@ const main = async () => {
 
     const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr6, Apr7, Apr8, Apr9, Apr10 } = Apropiación;
 
-    const { Tra1, Tra2, Tra4 } = Transferencia;
+    const { Tra1, Tra2, Tra3, Tra4 } = Transferencia;
 
     switch (sect) {
 
@@ -342,7 +350,7 @@ const main = async () => {
         case '2': 
             console.log(`Sección Transferencia \n`);
 
-            console.log(`Seleccione el enunciado a revisar: \n1. Enunciado 1 \n2. Enunciado 2 \n4. Enunciado 4 \n`);
+            console.log(`Seleccione el enunciado a revisar: \n1. Enunciado 1 \n2. Enunciado 2 \n3.Enunciado 3 \n4. Enunciado 4 \n`);
 
             const tra = prompt(`Ingrese el número del enunciado: `);
 
@@ -358,6 +366,12 @@ const main = async () => {
                     console.log(`\n${Tra2.title} \n${Tra2.description} \n`);
                     
                     await postsConComentarios()
+                    
+                    break
+                case '3':
+                    console.log(`\n${Tra3.title} \n${Tra3.description} \n`);
+                    
+                    await buscarPublicacion()
                     
                     break
                 case '4':
