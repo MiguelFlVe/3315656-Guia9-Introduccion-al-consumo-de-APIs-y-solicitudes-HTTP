@@ -223,30 +223,29 @@ const main = async () => {
                     break;
                     }
 
-                case '6': { 
+               case '6': { 
+                   console.log(`\n${Apr6.title} \n${Apr6.description} \n`);
+    
+                   const id = parseInt(prompt("Ingrese el ID del usuario: "));
+                   const titulo = prompt("Ingrese el nuevo titulo: ");
+                   const cuerpo = prompt("Ingrese el nuevo contenido: ");
+    
+                   if (!id || !titulo || !cuerpo) {
+                      console.log("No puedes dejar campos vacíos");
+                      break;
+                    }
 
-                    console.log(`\n${Apr6.title} \n${Apr6.description} \n`);
-                    
-                    const id = parseInt(prompt("Ingrese el ID del usuario para actualizar la publicacion: "))
-
-                    const titulo = prompt("Ingrese el nuevo titulo: ")
-                    const cuerpo = prompt("Ingrese el nuevo contenido: ")
-                    
-                    if (!id || !titulo || !cuerpo) {
-                     console.log("No puedes dejar campos vacíos");
-                    } else {  const nuevaData = {
-                         id,       
-                         title: titulo,
-                         body: cuerpo
+                    const nuevaData = {
+                        id,
+                        title: titulo,
+                        body: cuerpo
                     };
 
                     const actualizacion = await actualizarPublicacion(id, nuevaData);
                     console.log(`Publicacion actualizada ${actualizacion}`);
 
-                   };
-
-                   break;
-                   }
+                    break;
+                    }
 
                 case '7': { 
                     console.log(`\n${Apr7.title} \n${Apr7.description} \n`);
