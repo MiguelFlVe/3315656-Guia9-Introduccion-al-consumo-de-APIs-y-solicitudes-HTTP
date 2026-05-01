@@ -12,6 +12,8 @@ import {
 
     // Solicitud 5
     newComment,
+    //Solicitud 8
+    borrarPost,
 
     // Importar las funciones desde Transferencia
 
@@ -39,6 +41,11 @@ const secciones = {
         Apr7 : {
             title: 'Solicitud 7',
             description: 'Descripción de la Solicitud 7',
+        },
+
+        Apr8 : {
+            title: 'Solicitud 8',
+            description: 'Realice una solicitud DELETE para eliminar una publicación existente',
         },
         
         Apr10: {
@@ -70,7 +77,7 @@ const main = async () => {
 
     const { Apropiación, Transferencia } = secciones;
 
-    const { Apr1, Apr3, Apr5, Apr7, Apr10 } = Apropiación;
+    const { Apr1, Apr3, Apr5, Apr7, Apr8, Apr10 } = Apropiación;
 
     const { Tra4 } = Transferencia;
 
@@ -79,7 +86,7 @@ const main = async () => {
         case '1':
             console.log(`Sección: Apropiación \n`);
             
-            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n3. Solicitud 3 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n3. Solicitud 3 \n5. Solicitud 5 \n7. Solicitud 7 \n.8 Solicitud 8 \n10. Solicitud 10 \n`);
             
             const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -131,6 +138,29 @@ const main = async () => {
                     console.log(`\n${Apr7.title} \n${Apr7.description} \n`);
                     
                     break;
+
+                case '8':
+                    console.log(`\n${Apr8.title} \n${Apr8.description} \n`);
+
+                    const eliminar = prompt("ID del post a eliminar")
+                    const ID = parseInt(eliminar)
+
+                    if(!ID || ID <= 0){
+                        console.log("Id invalido")
+
+                        break
+                    }
+
+                    const eliminado = await borrarPost(ID)
+
+                    if (eliminado){
+                        console.log("Eliminado correctamente")
+                    }
+                    else {
+                        console.error("No fue posible eliminar")
+                    }
+                    
+                    return;
 
                 case '10':
                     console.log(`\n${Apr10.title} \n${Apr10.description} \n`);
