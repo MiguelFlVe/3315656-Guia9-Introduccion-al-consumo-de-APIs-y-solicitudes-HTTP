@@ -10,6 +10,7 @@ export { generalGet } from './Apropiación/Solicitud 10.js';
 
 // Exportar las funciones desde Transferencia
 export {getUsuarios, getPosts, usuariosConPosts} from '/.Transferencia/Enunciado 1.js';
+export {verPublicaciones, verComentarios, postsConComentarios} from '/.Transferencia/Enunciado 1.js';
 export { } from './Transferencia/Enunciado 4.js';
 
 // Funciones globales
