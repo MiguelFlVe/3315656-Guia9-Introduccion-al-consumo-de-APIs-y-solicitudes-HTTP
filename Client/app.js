@@ -18,15 +18,24 @@ import {
 
     // Solicitud 5
     newComment,
-
+    //Solicitud 6
+    actualizarPublicacion,
+    
     // Solicitud 7
     updatePost,
+    
+    //Solicitud 8
+    borrarPost,
 
     // Solicitud 10
     generalGet,
 
+
     // Importar las funciones desde Transferencia
 
+    //Enunciado 1
+    usuariosConPosts,
+    
     // Enunciado 4
     deletePostVerifyComments,
 
@@ -60,11 +69,21 @@ const secciones = {
             description: 'Realice una solicitud POST para registrar un nuevo comentario relacionado con una publicación.',
         },
         
+        Apr6 : {
+            title: 'Solicitud 6',
+            description: 'Realice una solicitud PUT para actualizar completamente la información de una publicación existente.',
+        },
+        
         Apr7 : {
             title: 'Solicitud 7',
             description: 'Realice una solicitud PATCH para modificar únicamente un campo específico de esa publicación.',
         },
-        
+
+        Apr8 : {
+            title: 'Solicitud 8',
+            description: 'Realice una solicitud DELETE para eliminar una publicación existente',
+        },
+
         Apr10: {
             title: 'Solicitud 10',
             description: 'Realice una solicitud GET general y compare la estructura de la respuesta con las solicitudes anteriores, identificando cambios y comportamientos del servicio.',
@@ -72,6 +91,11 @@ const secciones = {
     },
 
     Transferencia: {
+        Tra1 : {
+            title: 'Enunciado 1',
+            description: 'Usuarios activos y sus publicaciones',
+        },
+
         Tra4 : {
             title: 'Enunciado 4',
             description: 'Antes de eliminar una publicación, el sistema debe validar si dicha publicación tiene comentarios asociados. Si tiene comentarios, no debe eliminarse; de lo contrario, puede proceder.',
@@ -94,16 +118,16 @@ const main = async () => {
 
     const { Apropiación, Transferencia } = secciones;
 
-    const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr7, Apr10 } = Apropiación;
+    const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr6, Apr7, Apr8, Apr10 } = Apropiación;
 
-    const { Tra4 } = Transferencia;
+    const { Tra1, Tra4 } = Transferencia;
 
     switch (sect) {
 
         case '1':
             console.log(`Sección: Apropiación \n`);
             
-            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n6. Solicitud 6 \n7. Solicitud 7 \n.8 Solicitud 8 \n10. Solicitud 10 \n`);
             
             const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -181,6 +205,29 @@ const main = async () => {
 
                     break;
 
+                case '6':
+
+                    console.log(`\n${Apr6.title} \n${Apr6.description} \n`);
+                    
+                    const id = parseInt(prompt("Ingrese el ID del usuario para actualizar la publicacion: "))
+
+                    const titulo = prompt("Ingrese el nuevo titulo: ")
+                    const cuerpo = prompt("Ingrese el nuevo contenido: ")
+                    
+                    if (!id || !title || !body) {
+                     console.log("No puedes dejar campos vacíos");
+                    } else {  const nuevaData = {
+                         id,       
+                         title,
+                         body
+                    }};
+
+                    const actualizacion = await actualizarPublicacion(id, nuevaData);
+                    console.log(`Publicacion actualizada ${actualizacion}`);
+
+                    break;
+                    
+
                 case '7':
                     console.log(`\n${Apr7.title} \n${Apr7.description} \n`);
 
@@ -195,6 +242,29 @@ const main = async () => {
                         console.log(`Publicación actualizada.`);
                     }
 
+                    break;
+
+                case '8':
+                    console.log(`\n${Apr8.title} \n${Apr8.description} \n`);
+
+                    const eliminar = prompt("ID del post a eliminar")
+                    const ID = parseInt(eliminar)
+
+                    if(!ID || ID <= 0){
+                        console.log("Id invalido")
+
+                        break
+                    }
+
+                    const eliminado = await borrarPost(ID)
+
+                    if (eliminado){
+                        console.log("Eliminado correctamente")
+                    }
+                    else {
+                        console.error("No fue posible eliminar")
+                    }
+                    
                     break;
 
                 case '10':
@@ -219,11 +289,17 @@ const main = async () => {
         case '2':
             console.log(`Sección Transferencia \n`);
 
-            console.log(`Seleccione el enunciado a revisar: \n4. Enunciado 4 \n`);
+            console.log(`Seleccione el enunciado a revisar: \n1. Enunciado 1 \n4. Enunciado 4 \n`);
 
             const tra = prompt(`Ingrese el número del enunciado: `);
 
             switch(tra) {
+                case '1':
+                    console.log(`\n${Tra1.title} \n${Tra1.description} \n`);
+                    
+                    await usuariosConPosts()
+                    
+                    return
                 case '4':
                     console.log(`\n${Tra4.title} \n${Tra4.description} \n`);
 
