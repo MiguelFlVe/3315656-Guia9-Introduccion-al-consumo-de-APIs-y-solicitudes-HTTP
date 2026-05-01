@@ -10,6 +10,9 @@ import {
     // Solicitud 3
     postsDisponibles,
 
+    //Solicitud 4
+    crearPost,
+
     // Solicitud 5
     newComment,
 
@@ -29,6 +32,11 @@ const secciones = {
         Apr3 : {
             title: 'Solicitud 3',
             description: 'Realice una solicitud GET para obtener todas las publicaciones (posts) asociadas a un usuario determinado.',
+        },
+
+        Apr4 : {
+            title: 'Solicitud 4',
+            description: 'Realice una solicitud POST para crear una nueva publicación asociada a un usuario existente.',
         },
         
         Apr5 : {
@@ -70,7 +78,7 @@ const main = async () => {
 
     const { Apropiación, Transferencia } = secciones;
 
-    const { Apr1, Apr3, Apr5, Apr7, Apr10 } = Apropiación;
+    const { Apr1, Apr3, Apr4, Apr5, Apr7, Apr10 } = Apropiación;
 
     const { Tra4 } = Transferencia;
 
@@ -79,7 +87,7 @@ const main = async () => {
         case '1':
             console.log(`Sección: Apropiación \n`);
             
-            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n3. Solicitud 3 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n7. Solicitud 7 \n10. Solicitud 10 \n`);
             
             const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -96,7 +104,7 @@ const main = async () => {
                         console.log(`${usuario.id} - ${usuario.name}`);
                     });
 
-                    break;
+                    return;
 
                 case '3':
                     console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
@@ -110,6 +118,23 @@ const main = async () => {
                     });
                     
                     break;
+
+                case '4':
+                   console.log(`\n${Apr4.title} \n${Apr4.description} \n`);
+                
+                   console.log(`\nCrear nueva publicación\n`);
+
+                   const userId = prompt("Ingresa el ID del usuario: ");
+                   const title = prompt("Título del post: ");
+                   const body = prompt("Contenido del post: ");
+
+                   const nuevoPost = await crearPost(userId, title, body);
+
+                   console.log("Post creado:");
+                   console.log(nuevoPost);
+
+                   return;
+   
 
                 case '5':
                     console.log(`\n${Apr5.title} \n${Apr5.description} \n`);
