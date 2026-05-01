@@ -21,7 +21,7 @@ import {
 
     //Solicitud 6
     actualizarPublicacion,
-    
+        
     // Solicitud 7
     updatePost,
     
@@ -40,6 +40,9 @@ import {
     //Enunciado 1
     usuariosConPosts,
     
+    //Enunciado 2
+    postsConComentarios,
+
     // Enunciado 4
     deletePostVerifyComments,
 
@@ -105,6 +108,11 @@ const secciones = {
             description: 'Usuarios activos y sus publicaciones',
         },
 
+        Tra2 : {
+            title: 'Enunciado 2',
+            description: 'Publicaciones con y sin comentarios',
+        },
+
         Tra4 : {
             title: 'Enunciado 4',
             description: 'Antes de eliminar una publicación, el sistema debe validar si dicha publicación tiene comentarios asociados. Si tiene comentarios, no debe eliminarse; de lo contrario, puede proceder.',
@@ -129,7 +137,7 @@ const main = async () => {
 
     const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr6, Apr7, Apr8, Apr9, Apr10 } = Apropiación;
 
-    const { Tra1, Tra4 } = Transferencia;
+    const { Tra1, Tra2, Tra4 } = Transferencia;
 
     switch (sect) {
 
@@ -142,7 +150,7 @@ const main = async () => {
 
             switch(apr) {
 
-                case '1':
+                case '1': { 
                     console.log(`\n${Apr1.title} \n${Apr1.description} \n`);
 
                     const usuarios = await UsuariosDisponibles();
@@ -154,8 +162,8 @@ const main = async () => {
                     });
 
                     break;
-
-                case '2':
+                    }
+                case '2': { 
                     console.log(`\n${Apr2.title} \n${Apr2.description} \n`);
                 
                     const id = prompt("Ingrese el ID del usuario: ")
@@ -165,8 +173,8 @@ const main = async () => {
                     console.log(usuario)
 
                     break;    
-
-                case '3':
+                    }
+                case '3': { 
                     console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
                     
                     const posts = await postsDisponibles();
@@ -178,8 +186,8 @@ const main = async () => {
                     });
                     
                     break;
-
-                case '4':
+                    }
+                case '4': { 
                     console.log(`\n${Apr4.title} \n${Apr4.description} \n`);
                     
                     console.log(`\nCrear nueva publicación\n`);
@@ -195,8 +203,8 @@ const main = async () => {
 
                     break;
    
-
-                case '5':
+                    }
+                case '5': { 
                     console.log(`\n${Apr5.title} \n${Apr5.description} \n`);
 
                     const idPost = prompt(`Ingrese el ID de la publicación a la que desea agregar un comentario: `);
@@ -213,31 +221,33 @@ const main = async () => {
                     }
 
                     break;
+                    }
 
-                case '6':
+               case '6': { 
+                   console.log(`\n${Apr6.title} \n${Apr6.description} \n`);
+    
+                   const id = parseInt(prompt("Ingrese el ID del usuario: "));
+                   const titulo = prompt("Ingrese el nuevo titulo: ");
+                   const cuerpo = prompt("Ingrese el nuevo contenido: ");
+    
+                   if (!id || !titulo || !cuerpo) {
+                      console.log("No puedes dejar campos vacíos");
+                      break;
+                    }
 
-                    console.log(`\n${Apr6.title} \n${Apr6.description} \n`);
-                    
-                    const id = parseInt(prompt("Ingrese el ID del usuario para actualizar la publicacion: "))
-
-                    const titulo = prompt("Ingrese el nuevo titulo: ")
-                    const cuerpo = prompt("Ingrese el nuevo contenido: ")
-                    
-                    if (!id || !title || !body) {
-                     console.log("No puedes dejar campos vacíos");
-                    } else {  const nuevaData = {
-                         id,       
-                         title,
-                         body
-                    }};
+                    const nuevaData = {
+                        id,
+                        title: titulo,
+                        body: cuerpo
+                    };
 
                     const actualizacion = await actualizarPublicacion(id, nuevaData);
                     console.log(`Publicacion actualizada ${actualizacion}`);
 
                     break;
-                    
+                    }
 
-                case '7':
+                case '7': { 
                     console.log(`\n${Apr7.title} \n${Apr7.description} \n`);
 
                     const postId = prompt(`Ingrese el ID de la publicación a modificar: `);
@@ -252,8 +262,9 @@ const main = async () => {
                     }
 
                     break;
+                    }
 
-                case '8':
+                case '8': { 
                     console.log(`\n${Apr8.title} \n${Apr8.description} \n`);
 
                     const eliminar = prompt("ID del post a eliminar")
@@ -274,8 +285,10 @@ const main = async () => {
                         console.error("No fue posible eliminar")
                     }
                     
-                    return;
-                case '9':
+                    break;
+                    }
+
+                case '9': { 
                     console.log(`\n${Apr9.title} \n${Apr9.description} \n`);
 
                     const verificar = prompt("Ingrese el ID del post: ")
@@ -303,9 +316,10 @@ const main = async () => {
                         console.log(`Recurso disponible ${verificacion}`)
 
                     }
-                    return
+                    break; 
+                    }
 
-                case '10':
+                case '10': { 
                     console.log(`\n${Apr10.title} \n${Apr10.description} \n`);
 
                     const datosGenerales = await generalGet();
@@ -315,6 +329,7 @@ const main = async () => {
                     console.log(JSON.stringify(datosGenerales, null, 2));
                     
                     break;
+                    }
 
                 default:
                     console.log(`Opción no válida`);
@@ -324,10 +339,10 @@ const main = async () => {
 
             break;
 
-        case '2':
+        case '2': 
             console.log(`Sección Transferencia \n`);
 
-            console.log(`Seleccione el enunciado a revisar: \n1. Enunciado 1 \n4. Enunciado 4 \n`);
+            console.log(`Seleccione el enunciado a revisar: \n1. Enunciado 1 \n2. Enunciado 2 \n4. Enunciado 4 \n`);
 
             const tra = prompt(`Ingrese el número del enunciado: `);
 
@@ -337,7 +352,14 @@ const main = async () => {
                     
                     await usuariosConPosts()
                     
-                    return
+                    break
+
+                case '2':
+                    console.log(`\n${Tra2.title} \n${Tra2.description} \n`);
+                    
+                    await postsConComentarios()
+                    
+                    break
                 case '4':
                     console.log(`\n${Tra4.title} \n${Tra4.description} \n`);
 
