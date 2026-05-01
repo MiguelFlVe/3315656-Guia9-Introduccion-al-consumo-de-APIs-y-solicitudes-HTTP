@@ -26,3 +26,28 @@ export const getPosts = async () => {
     const respuesta = await fetch("http://localhost:3000/posts");
     return respuesta.json();
 };
+
+export const usuariosConPosts = async () => {
+    try {
+        console.log("Usuarios y cantidad de publicaciones:\n");
+
+        const usuarios = await getUsuarios();
+        const posts = await getPosts();
+
+        for (let i = 0; i < usuarios.length; i++) {
+            const usuario = usuarios[i];
+            let contador = 0;
+
+            for (let j = 0; j < posts.length; j++) {
+                if (posts[j].userId === usuario.id) {
+                    contador++;
+                }
+            }
+
+            console.log(`👤 ${usuario.name} → 📝 ${contador} publicaciones`);
+        }
+
+    } catch (error) {
+        console.error("❌ Error al obtener datos:", error);
+    }
+};
