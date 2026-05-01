@@ -24,6 +24,7 @@ import {
     
     // Solicitud 7
     updatePost,
+    
     //Solicitud 8
     borrarPost,
     
