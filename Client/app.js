@@ -18,15 +18,18 @@ import {
 
     // Solicitud 5
     newComment,
+
     //Solicitud 6
     actualizarPublicacion,
     
     // Solicitud 7
     updatePost,
-    
     //Solicitud 8
     borrarPost,
-
+    
+    //Solicitud 9
+    verificarPost,
+    
     // Solicitud 10
     generalGet,
 
@@ -84,6 +87,11 @@ const secciones = {
             description: 'Realice una solicitud DELETE para eliminar una publicación existente',
         },
 
+        Apr9 : {
+            title: 'Solicitud 9',
+            description: 'Repita una solicitud GET sobre el recurso eliminado o modificado y analice la respuesta obtenida.',
+        },
+
         Apr10: {
             title: 'Solicitud 10',
             description: 'Realice una solicitud GET general y compare la estructura de la respuesta con las solicitudes anteriores, identificando cambios y comportamientos del servicio.',
@@ -118,7 +126,7 @@ const main = async () => {
 
     const { Apropiación, Transferencia } = secciones;
 
-    const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr6, Apr7, Apr8, Apr10 } = Apropiación;
+    const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr6, Apr7, Apr8, Apr9, Apr10 } = Apropiación;
 
     const { Tra1, Tra4 } = Transferencia;
 
@@ -127,7 +135,7 @@ const main = async () => {
         case '1':
             console.log(`Sección: Apropiación \n`);
             
-            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n6. Solicitud 6 \n7. Solicitud 7 \n.8 Solicitud 8 \n10. Solicitud 10 \n`);
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n6. Solicitud 6 \n7. Solicitud 7 \n.8 Solicitud 8 \n9. Solicitud 9 \n10. Solicitud 10 \n`);
             
             const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -265,7 +273,36 @@ const main = async () => {
                         console.error("No fue posible eliminar")
                     }
                     
-                    break;
+                    return;
+                case '9':
+                    console.log(`\n${Apr9.title} \n${Apr9.description} \n`);
+
+                    const verificar = prompt("Ingrese el ID del post: ")
+                    const ide = parseInt(verificar)
+
+                    if(!ide || ide <= 0){
+                        console.log("Id invalido")
+                        return;
+                    }
+                    
+                    //Eliminamos o modificamos
+                    const eliminado = await borrarPost(ide);
+
+                    if(eliminado) {
+                        console.log("Eliminado correctamente")
+                    }
+                    
+                    //Verificamos la respuesta con GET
+                    const verificacion = await verificarPost(ide)
+
+                    if(!verificacion){
+                        console.error("El recurso no existe en el servidor")
+                    }
+                    else {
+                        console.log(`Recurso disponible ${verificacion}`)
+
+                    }
+                    return
 
                 case '10':
                     console.log(`\n${Apr10.title} \n${Apr10.description} \n`);
