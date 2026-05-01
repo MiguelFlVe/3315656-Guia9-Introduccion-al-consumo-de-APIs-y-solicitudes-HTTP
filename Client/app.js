@@ -22,6 +22,9 @@ import {
     // Solicitud 7
     updatePost,
 
+    // Solicitud 10
+    generalGet,
+
     // Importar las funciones desde Transferencia
 
     // Funciones globales
@@ -61,7 +64,7 @@ const secciones = {
         
         Apr10: {
             title: 'Solicitud 10',
-            description: 'Descripción de la Solicitud 10',
+            description: 'Realice una solicitud GET general y compare la estructura de la respuesta con las solicitudes anteriores, identificando cambios y comportamientos del servicio.',
         }
     },
 
@@ -114,18 +117,18 @@ const main = async () => {
                         console.log(`${usuario.id} - ${usuario.name}`);
                     });
 
-                    return;
+                    break;
 
                 case '2':
-                     console.log(`\n${Apr2.title} \n${Apr2.description} \n`);
-                 
-                     const id = prompt("Ingrese el ID del usuario: ")
-                     const usuario = await(UsuarioId(id))
+                    console.log(`\n${Apr2.title} \n${Apr2.description} \n`);
                 
-                     console.log("Usuario Encontrado: ")
-                     console.log(usuario)
+                    const id = prompt("Ingrese el ID del usuario: ")
+                    const usuario = await(UsuarioId(id))
+            
+                    console.log("Usuario Encontrado: ")
+                    console.log(usuario)
 
-                     return;    
+                    break;    
 
                 case '3':
                     console.log(`\n${Apr3.title} \n${Apr3.description} \n`);
@@ -141,33 +144,33 @@ const main = async () => {
                     break;
 
                 case '4':
-                   console.log(`\n${Apr4.title} \n${Apr4.description} \n`);
-                
-                   console.log(`\nCrear nueva publicación\n`);
+                    console.log(`\n${Apr4.title} \n${Apr4.description} \n`);
+                    
+                    console.log(`\nCrear nueva publicación\n`);
 
-                   const userId = prompt("Ingresa el ID del usuario: ");
-                   const title = prompt("Título del post: ");
-                   const body = prompt("Contenido del post: ");
+                    const userId = prompt("Ingresa el ID del usuario: ");
+                    const title = prompt("Título del post: ");
+                    const body = prompt("Contenido del post: ");
 
-                   const nuevoPost = await crearPost(userId, title, body);
+                    const nuevoPost = await crearPost(userId, title, body);
 
-                   console.log("Post creado:");
-                   console.log(nuevoPost);
+                    console.log("Post creado:");
+                    console.log(nuevoPost);
 
-                   return;
+                    break;
    
 
                 case '5':
                     console.log(`\n${Apr5.title} \n${Apr5.description} \n`);
                     
-                    const title = prompt(`Ingrese el título del comentario: `);
+                    const titulo = prompt(`Ingrese el título del comentario: `);
 
-                    const body = prompt(`Ingrese el cuerpo del comentario: `);
+                    const cuerpo = prompt(`Ingrese el cuerpo del comentario: `);
 
-                    if (title.trim() === '' || body.trim() === '') {
+                    if (titulo.trim() === '' || cuerpo.trim() === '') {
                         console.log(`Error: Todos los campos son obligatorios.`);
                     } else {
-                        const comentario = await newComment(title, body);
+                        const comentario = await newComment(titulo, cuerpo);
                         console.log(`Comentario registrado: \n${JSON.stringify(comentario, null, 2)}`);
                     }
 
@@ -191,6 +194,12 @@ const main = async () => {
 
                 case '10':
                     console.log(`\n${Apr10.title} \n${Apr10.description} \n`);
+
+                    const datosGenerales = await generalGet();
+
+                    console.log("Datos obtenidos:\n");
+
+                    console.log(JSON.stringify(datosGenerales, null, 2));
                     
                     break;
 
