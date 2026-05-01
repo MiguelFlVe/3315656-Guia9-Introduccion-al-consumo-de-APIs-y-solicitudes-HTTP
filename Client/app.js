@@ -4,12 +4,20 @@
 import {
     // Importar las funciones desde Apropiación
     
-    UsuariosDisponibles, // Solicitud 1
-    UsuarioId, //Solicitud 2
-    postsDisponibles, // Solicitud 3
+    // Solicitud 1
+    UsuariosDisponibles,
+    
+    //Solicitud 2
+    UsuarioId, 
+
+    // Solicitud 3
+    postsDisponibles,
 
     // Solicitud 5
     newComment,
+
+    // Solicitud 7
+    updatePost,
 
     // Importar las funciones desde Transferencia
 
