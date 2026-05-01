@@ -29,7 +29,7 @@ export const getComenta = async () => {
     return res.json();
 };
 
-export const buscarPublicacion = async (idPost) => {
+export const buscarPublicacion = async () => {
     try {
         
         const idPost = prompt("Ingrese el Id de la publicacion: ");
@@ -38,7 +38,7 @@ export const buscarPublicacion = async (idPost) => {
         const comments = await getComenta();
 
         // Buscar el post específico
-        const post = posts.find(p => p.id === idPost);
+        const post = posts.find(post => post.id == idPost);
 
         if (!post) {
             console.log("Publicación no encontrada");
@@ -49,7 +49,7 @@ export const buscarPublicacion = async (idPost) => {
         let contador = 0;
 
         for (let i = 0; i < comments.length; i++) {
-            if (comments[i].postId === post.id) {
+            if (comments[i].postId == post.id) {
                 contador++;
             }
         }
