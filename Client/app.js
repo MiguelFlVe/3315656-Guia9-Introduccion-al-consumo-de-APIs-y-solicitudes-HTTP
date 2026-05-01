@@ -18,6 +18,8 @@ import {
 
     // Solicitud 5
     newComment,
+    //Solicitud 6
+    actualizarPublicacion,
     
     // Solicitud 7
     updatePost,
@@ -27,6 +29,7 @@ import {
 
     // Solicitud 10
     generalGet,
+
 
     // Importar las funciones desde Transferencia
 
@@ -58,6 +61,11 @@ const secciones = {
         Apr5 : {
             title: 'Solicitud 5',
             description: 'Realice una solicitud POST para registrar un nuevo comentario relacionado con una publicación.',
+        },
+        
+        Apr6 : {
+            title: 'Solicitud 6',
+            description: 'Realice una solicitud PUT para actualizar completamente la información de una publicación existente.',
         },
         
         Apr7 : {
@@ -99,7 +107,7 @@ const main = async () => {
 
     const { Apropiación, Transferencia } = secciones;
 
-    const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr7, Apr8, Apr10 } = Apropiación;
+    const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr6, Apr7, Apr8, Apr10 } = Apropiación;
 
     const { Tra4 } = Transferencia;
 
@@ -108,7 +116,7 @@ const main = async () => {
         case '1':
             console.log(`Sección: Apropiación \n`);
             
-            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n7. Solicitud 7 \n.8 Solicitud 8 \n10. Solicitud 10 \n`);
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n6. Solicitud 6 \n7. Solicitud 7 \n.8 Solicitud 8 \n10. Solicitud 10 \n`);
             
             const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -184,6 +192,29 @@ const main = async () => {
 
                     break;
 
+                case '6':
+
+                    console.log(`\n${Apr6.title} \n${Apr6.description} \n`);
+                    
+                    const id = parseInt(prompt("Ingrese el ID del usuario para actualizar la publicacion: "))
+
+                    const titulo = prompt("Ingrese el nuevo titulo: ")
+                    const cuerpo = prompt("Ingrese el nuevo contenido: ")
+                    
+                    if (!id || !title || !body) {
+                     console.log("No puedes dejar campos vacíos");
+                    } else {  const nuevaData = {
+                         id,       
+                         title,
+                         body
+                    };
+
+                    const actualizacion = await actualizarPublicacion(id, nuevaData);
+                    console.log(`Publicacion actualizada ${actualizacion}`);
+
+                    break;
+                    
+
                 case '7':
                     console.log(`\n${Apr7.title} \n${Apr7.description} \n`);
 
@@ -221,7 +252,7 @@ const main = async () => {
                         console.error("No fue posible eliminar")
                     }
                     
-                    return;
+                    break;
 
                 case '10':
                     console.log(`\n${Apr10.title} \n${Apr10.description} \n`);
