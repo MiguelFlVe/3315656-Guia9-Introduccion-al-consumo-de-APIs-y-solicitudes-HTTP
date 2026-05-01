@@ -236,7 +236,7 @@ const main = async () => {
                     }
 
                     const nuevaData = {
-                        id,
+                        id: id,
                         title: titulo,
                         body: cuerpo
                     };
