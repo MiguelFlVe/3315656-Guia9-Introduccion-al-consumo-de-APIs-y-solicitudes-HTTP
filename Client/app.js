@@ -21,6 +21,10 @@ import {
 
     // Importar las funciones desde Transferencia
 
+    //Enunciado 1
+    getUsuarios, getPosts,
+
+
     // Funciones globales
     prompt
 } from './index.js';
@@ -58,6 +62,11 @@ const secciones = {
     },
 
     Transferencia: {
+        Tra1 : {
+            title: 'Enunciado 1',
+            description: 'Usuarios activos y sus publicaciones',
+        },
+
         Tra4 : {
             title: 'Enunciado 4',
             description: 'Descripción del Enunciado 4',
