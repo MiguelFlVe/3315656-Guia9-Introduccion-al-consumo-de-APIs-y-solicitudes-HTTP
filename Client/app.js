@@ -205,6 +205,11 @@ const main = async () => {
                     const title = prompt("Título del post: ");
                     const body = prompt("Contenido del post: ");
 
+                    if (!userId || !title || !body) {
+                        console.log("Todos los campos son obligatorios");
+                        break;
+                        }
+
                     const nuevoPost = await crearPost(userId, title, body);
 
                     console.log("Post creado:");
@@ -235,7 +240,7 @@ const main = async () => {
                case '6': { 
                    console.log(`\n${Apr6.title} \n${Apr6.description} \n`);
     
-                   const id = prompt("Ingrese el ID del usuario: ");
+                   const id = prompt("Ingrese el ID del post: ");
                    const titulo = prompt("Ingrese el nuevo titulo: ");
                    const cuerpo = prompt("Ingrese el nuevo contenido: ");
     
@@ -305,7 +310,7 @@ const main = async () => {
                     }
                     
                     //Verificamos la respuesta con GET
-                    const verificacion = await verificarPost(ide)
+                    const verificacion = await verificarPost(verificar)
 
                     if(!verificacion){
                         console.error("El recurso no existe en el servidor")

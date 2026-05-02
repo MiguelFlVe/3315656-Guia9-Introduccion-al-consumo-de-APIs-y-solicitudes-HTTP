@@ -19,6 +19,8 @@
 // o Contenido
 // o Número de comentarios asociados
 
+import { prompt } from "../index.js";
+
 export const getPublica = async () => {
     const res = await fetch("http://localhost:3000/posts");
     return res.json();
