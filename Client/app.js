@@ -1,6 +1,7 @@
 //Para ejecutar el programa es con "node Client/app.js"
 
 // Importar las funciones desde index.js
+import e from 'express';
 import {
     // Importar las funciones desde Apropiación
     
@@ -42,6 +43,9 @@ import {
     
     //Enunciado 2
     postsConComentarios,
+
+    //Enunciado 3
+    buscarPublicacion,
 
     // Enunciado 4
     deletePostVerifyComments,
@@ -113,6 +117,11 @@ const secciones = {
             description: 'Publicaciones con y sin comentarios',
         },
 
+        Tra3 : {
+            title: 'Enunciado 3',
+            description: 'Búsqueda específica de información',
+        },
+
         Tra4 : {
             title: 'Enunciado 4',
             description: 'Antes de eliminar una publicación, el sistema debe validar si dicha publicación tiene comentarios asociados. Si tiene comentarios, no debe eliminarse; de lo contrario, puede proceder.',
@@ -137,14 +146,14 @@ const main = async () => {
 
     const { Apr1, Apr2, Apr3, Apr4, Apr5, Apr6, Apr7, Apr8, Apr9, Apr10 } = Apropiación;
 
-    const { Tra1, Tra2, Tra4 } = Transferencia;
+    const { Tra1, Tra2, Tra3, Tra4 } = Transferencia;
 
     switch (sect) {
 
         case '1':
             console.log(`Sección: Apropiación \n`);
             
-            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2 Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n6. Solicitud 6 \n7. Solicitud 7 \n.8 Solicitud 8 \n9. Solicitud 9 \n10. Solicitud 10 \n`);
+            console.log(`Seleccione la solicitud a revisar: \n1. Solicitud 1 \n2. Solicitud 2 \n3. Solicitud 3 \n4. Solicitud 4 \n5. Solicitud 5 \n6. Solicitud 6 \n7. Solicitud 7 \n8 Solicitud 8 \n9. Solicitud 9 \n10. Solicitud 10 \n`);
             
             const apr = prompt(`Ingrese el número de la solicitud: `);
 
@@ -182,7 +191,7 @@ const main = async () => {
                     console.log("Publicaciones disponibles:\n");
 
                     posts.forEach(post => {
-                        console.log(`    id: ${post.id} \nuserId: ${post.userId} \n title: ${post.title} \n  body: ${post.body} \n`);
+                        console.log(`id: ${post.id} \nuserId: ${post.userId} \n title: ${post.title} \n  body: ${post.body} \n`);
                     });
                     
                     break;
@@ -195,6 +204,11 @@ const main = async () => {
                     const userId = prompt("Ingresa el ID del usuario: ");
                     const title = prompt("Título del post: ");
                     const body = prompt("Contenido del post: ");
+
+                    if (!userId || !title || !body) {
+                        console.log("Todos los campos son obligatorios");
+                        break;
+                        }
 
                     const nuevoPost = await crearPost(userId, title, body);
 
@@ -226,7 +240,7 @@ const main = async () => {
                case '6': { 
                    console.log(`\n${Apr6.title} \n${Apr6.description} \n`);
     
-                   const id = parseInt(prompt("Ingrese el ID del usuario: "));
+                   const id = prompt("Ingrese el ID del post: ");
                    const titulo = prompt("Ingrese el nuevo titulo: ");
                    const cuerpo = prompt("Ingrese el nuevo contenido: ");
     
@@ -268,15 +282,9 @@ const main = async () => {
                     console.log(`\n${Apr8.title} \n${Apr8.description} \n`);
 
                     const eliminar = prompt("ID del post a eliminar")
-                    const ID = parseInt(eliminar)
+                    
 
-                    if(!ID || ID <= 0){
-                        console.log("Id invalido")
-
-                        break
-                    }
-
-                    const eliminado = await borrarPost(ID)
+                   const eliminado = await borrarPost(eliminar)
 
                     if (eliminado){
                         console.log("Eliminado correctamente")
@@ -292,22 +300,17 @@ const main = async () => {
                     console.log(`\n${Apr9.title} \n${Apr9.description} \n`);
 
                     const verificar = prompt("Ingrese el ID del post: ")
-                    const ide = parseInt(verificar)
-
-                    if(!ide || ide <= 0){
-                        console.log("Id invalido")
-                        return;
-                    }
+                    
                     
                     //Eliminamos o modificamos
-                    const eliminado = await borrarPost(ide);
+                    const eliminado = await borrarPost(verificar);
 
                     if(eliminado) {
                         console.log("Eliminado correctamente")
                     }
                     
                     //Verificamos la respuesta con GET
-                    const verificacion = await verificarPost(ide)
+                    const verificacion = await verificarPost(verificar)
 
                     if(!verificacion){
                         console.error("El recurso no existe en el servidor")
@@ -342,7 +345,7 @@ const main = async () => {
         case '2': 
             console.log(`Sección Transferencia \n`);
 
-            console.log(`Seleccione el enunciado a revisar: \n1. Enunciado 1 \n2. Enunciado 2 \n4. Enunciado 4 \n`);
+            console.log(`Seleccione el enunciado a revisar: \n1. Enunciado 1 \n2. Enunciado 2 \n3.Enunciado 3 \n4. Enunciado 4 \n`);
 
             const tra = prompt(`Ingrese el número del enunciado: `);
 
@@ -352,14 +355,22 @@ const main = async () => {
                     
                     await usuariosConPosts()
                     
-                    break
+                    break;
 
                 case '2':
                     console.log(`\n${Tra2.title} \n${Tra2.description} \n`);
                     
                     await postsConComentarios()
                     
-                    break
+                    break;
+
+                case '3':
+                    console.log(`\n${Tra3.title} \n${Tra3.description} \n`);
+                    
+                    await buscarPublicacion()
+                    
+                    break;
+                    
                 case '4':
                     console.log(`\n${Tra4.title} \n${Tra4.description} \n`);
 
